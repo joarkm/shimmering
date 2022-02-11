@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   public subscriptions$: Observable<Observable<MySubscription>[]>;
   public iconClass: { [key: string]: string } = {
     'audio': 'fi fi-rs-music',
+    'student': 'fi fi-rr-graduation-cap',
     'video': 'fi fi-rr-film',
     'volleyball': 'fi fi-rr-volleyball'
   }

@@ -22,6 +22,16 @@ export class AppService {
 
   public getSubscriptions(): Observable<Observable<MySubscription>[]> {
     const subscriptions: Observable<MySubscription>[] = [
+      of<MySubscription>({
+        daysTotal: 14,
+        daysRemaining: 0,
+        subscriptionItem: {
+          title: 'Student membership',
+          description: 'Student member ship fee',
+          icon: 'student'
+        }
+      } as MySubscription),
+
       combineLatest(
         of<MySubscription>({
           daysTotal: 5,
