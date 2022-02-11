@@ -4,6 +4,6 @@ import { Message } from '@my/api-interfaces';
 @Injectable()
 export class AppService {
   getData(): Message {
-    return { message: 'Welcome to api!' };
+    return { message: 'Welcome' };
   }
 }

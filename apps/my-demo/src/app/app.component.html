@@ -1,9 +1,69 @@
-<div style="text-align: center">
-  <h1>Welcome to my-demo!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Fast and Extensible Build System"
-  />
+<div class="container">
+  <h1>Subscriptions</h1>
+  <span class="rectangle card" [ngClass]="{ 'shimmer': isLoading$ | async }">
+    {{ (message$ | async) ? '' : '' }}
+  </span>
+  <!-- <span class="rectangle" [ngClass]="{ 'shimmer': isLoading$ | async }">{{ message }}</span> -->
+
+  <h4 *ngIf="isLoading$ | async" class="rectangle" [ngClass]="{ 'shimmer': isLoading$ | async }" style="height: 1em;"></h4>
+
+  <div *ngIf="isLoading$ | async" class="subscription">
+    <span class="square shimmer"></span>
+    <div style="display: grid; grid-auto-flow: row;">
+      <section class="subscription__about">
+        <h5 class="rectangle shimmer" style="height: 1em; flex-grow: 1;"></h5>
+        <p class="rectangle shimmer" style="height: 30px; flex-grow: 1;"></p>
+      </section>
+  
+      <span class="rectangle shimmer" style="height: 1em;  align-self: flex-end;"></span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!(isLoading$ | async) && (subscriptions$ | async)">
+    <ng-container *ngIf="(subscriptions$ | async) as subscriptions" class="subscriptions">
+      <ng-container *ngIf="subscriptions.length > 0">
+        <h4>{{ subscriptions.length }} subscriptions</h4>
+        <ng-container *ngFor="let subscription$ of subscriptions">
+          <div *ngIf="(subscription$ | async) as subscription" class="subscription">
+            <span class="square"></span>
+            <div style="display: grid; grid-auto-flow: row;">
+              <section class="subscription__about">
+                <h5>{{ subscription.subscriptionItem?.title }}</h5>
+                <p>{{ subscription.subscriptionItem?.description }}</p>
+              </section>
+          
+              <div *ngIf="subscription.daysRemaining > 0; else Expired" class="subscription__remaining">
+                <p>Days remaining: {{ subscription.daysRemaining }}</p>
+                
+                <!-- <div class="subscription__remaining-bar">
+                  <span class="subscription__remaining-bar-content" [ngStyle]="{
+                    'width': (subscription.daysRemaining / subscription.daysTotal) * 100 + '%'
+                  }"
+                  ></span>
+                </div> -->
+                <div class="subscription__remaining-bar">
+                  <div class="subscription__remaining-bar-content"
+                  [style.width]="((subscription.daysRemaining / subscription.daysTotal) * 100) + '%'"></div>
+                </div>
+              </div>
+
+              <ng-template #Expired>
+                <i>Expired</i>
+              </ng-template>
+  
+              <!-- <p>{{ subscription.daysRemaining }}</p>
+              
+              <span class="rectangle" [ngStyle]="{
+                'height': '1em',
+                'align-self': 'flex-end',
+                'width': (subscription.daysRemaining / subscription.daysTotal) * 100 + '%'
+              }"
+              ></span> -->
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
