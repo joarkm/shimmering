@@ -19,49 +19,41 @@
     </div>
   </div>
 
-  <ng-container *ngIf="!(isLoading$ | async) && (subscriptions$ | async)">
-    <ng-container *ngIf="(subscriptions$ | async) as subscriptions" class="subscriptions">
+  <ng-container *ngIf="(isLoading$ | async) === false && (subscriptions$ | async)">
+    <ng-container *ngIf="(subscriptions$ | async) as subscriptions">
       <ng-container *ngIf="subscriptions.length > 0">
-        <h4>{{ subscriptions.length }} subscriptions</h4>
-        <ng-container *ngFor="let subscription$ of subscriptions">
-          <div *ngIf="(subscription$ | async) as subscription" class="subscription">
-            <span class="square"></span>
-            <div style="display: grid; grid-auto-flow: row;">
-              <section class="subscription__about">
-                <h5>{{ subscription.subscriptionItem?.title }}</h5>
-                <p>{{ subscription.subscriptionItem?.description }}</p>
-              </section>
-          
-              <div *ngIf="subscription.daysRemaining > 0; else Expired" class="subscription__remaining">
-                <p>Days remaining: {{ subscription.daysRemaining }}</p>
-                
-                <!-- <div class="subscription__remaining-bar">
-                  <span class="subscription__remaining-bar-content" [ngStyle]="{
-                    'width': (subscription.daysRemaining / subscription.daysTotal) * 100 + '%'
-                  }"
-                  ></span>
-                </div> -->
-                <div class="subscription__remaining-bar">
-                  <div class="subscription__remaining-bar-content"
-                  [style.width]="((subscription.daysRemaining / subscription.daysTotal) * 100) + '%'"></div>
-                </div>
+        <div class="subscriptions">
+          <h4>{{ subscriptions.length }} subscriptions</h4>
+          <ng-container *ngFor="let subscription$ of subscriptions">
+            <div *ngIf="(subscription$ | async) as subscription" class="subscription">
+              <div class="square icon-container">
+                <span class="icon {{ iconClass[subscription.subscriptionItem.icon] || '' }}"></span>
               </div>
-
-              <ng-template #Expired>
-                <i>Expired</i>
-              </ng-template>
+              <div style="display: grid; grid-auto-flow: row;">
+                <section class="subscription__about">
+                  <h5>{{ subscription.subscriptionItem?.title }}</h5>
+                  <p>{{ subscription.subscriptionItem?.description }}</p>
+                </section>
+            
+                <div *ngIf="subscription.daysRemaining > 0; else Expired" class="subscription__remaining">
+                  <div class="subscription__remaining-text">
+                    <p>Days remaining:</p>
+                    <p>{{ subscription.daysRemaining }}</p>
+                  </div>
+                  <div class="subscription__remaining-bar">
+                    <div class="subscription__remaining-bar-content"
+                      [style.width]="((subscription.daysRemaining / subscription.daysTotal) * 100) + '%'">
+                    </div>
+                  </div>
+                </div>
   
-              <!-- <p>{{ subscription.daysRemaining }}</p>
-              
-              <span class="rectangle" [ngStyle]="{
-                'height': '1em',
-                'align-self': 'flex-end',
-                'width': (subscription.daysRemaining / subscription.daysTotal) * 100 + '%'
-              }"
-              ></span> -->
+                <ng-template #Expired>
+                  <p class="subscription__expired">Expired</p>
+                </ng-template>
+              </div>
             </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
       </ng-container>
     </ng-container>
   </ng-container>

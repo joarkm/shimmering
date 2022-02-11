@@ -28,7 +28,8 @@ export class AppService {
           daysRemaining: 5,
           subscriptionItem: {
             title: 'Video streaming',
-            description: 'Streaming service for video content'
+            description: 'Streaming service for video content',
+            icon: 'video'
           }
         } as MySubscription),
         merge(
@@ -51,7 +52,8 @@ export class AppService {
           daysRemaining: 10,
           subscriptionItem: {
             title: 'Audio streaming',
-            description: 'Streaming service for audio content'
+            description: 'Streaming service for audio content',
+            icon: 'audio'
           }
         } as MySubscription),
         merge(
@@ -67,6 +69,16 @@ export class AppService {
           daysRemaining
         }))
       ),
+
+      of<MySubscription>({
+        daysTotal: 365,
+        daysRemaining: 365,
+        subscriptionItem: {
+          title: 'Club membership',
+          description: 'Club member ship fee',
+          icon: 'volleyball'
+        }
+      } as MySubscription),
     ];
 
     return of(subscriptions);

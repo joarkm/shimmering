@@ -15,6 +15,11 @@ export class AppComponent implements OnInit {
   public message$: Observable<Message> = this.appService.getMessage();
   public message!: Message;
   public subscriptions$: Observable<Observable<MySubscription>[]>;
+  public iconClass: { [key: string]: string } = {
+    'audio': 'fi fi-rs-music',
+    'video': 'fi fi-rr-film',
+    'volleyball': 'fi fi-rr-volleyball'
+  }
 
   constructor(private appService: AppService) {
     this.isLoading$ = this.appService.isLoading$;
