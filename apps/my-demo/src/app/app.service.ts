@@ -25,6 +25,7 @@ export class AppService {
       of<MySubscription>({
         daysTotal: 14,
         daysRemaining: 0,
+        expired: true,
         subscriptionItem: {
           title: 'Student membership',
           description: 'Student member ship fee',
@@ -36,6 +37,7 @@ export class AppService {
         of<MySubscription>({
           daysTotal: 5,
           daysRemaining: 5,
+          expired: false,
           subscriptionItem: {
             title: 'Video streaming',
             description: 'Streaming service for video content',
@@ -52,7 +54,8 @@ export class AppService {
       ).pipe(
         map(([subscription, daysRemaining]) => ({
           ...subscription,
-          daysRemaining
+          daysRemaining,
+          expired: daysRemaining === 0
         }))
       ),
 
@@ -60,6 +63,7 @@ export class AppService {
         of<MySubscription>({
           daysTotal: 10,
           daysRemaining: 10,
+          expired: false,
           subscriptionItem: {
             title: 'Audio streaming',
             description: 'Streaming service for audio content',
@@ -76,13 +80,15 @@ export class AppService {
       ).pipe(
         map(([subscription, daysRemaining]) => ({
           ...subscription,
-          daysRemaining
+          daysRemaining,
+          expired: daysRemaining === 0
         }))
       ),
 
       of<MySubscription>({
         daysTotal: 365,
         daysRemaining: 365,
+        expired: false,
         subscriptionItem: {
           title: 'Club membership',
           description: 'Club member ship fee',

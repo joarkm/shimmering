@@ -4,4 +4,5 @@ export interface MySubscription {
     subscriptionItem: Item;
     daysRemaining: number;
     daysTotal: number;
+    expired: boolean;
 }

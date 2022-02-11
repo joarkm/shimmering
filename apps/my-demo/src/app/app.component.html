@@ -31,14 +31,14 @@
                   <div class="square icon-container">
                     <span
                       class="icon {{ iconClass[subscription.subscriptionItem.icon] || '' }}"
-                      [ngClass]="{ 'icon--expired': subscription.daysRemaining === 0}">
+                      [ngClass]="{ 'icon--expired': subscription.expired}">
                     </span>
                   </div>
                 </div>
                 <div>
                   <div style="display: grid; grid-auto-flow: row; gap: 5px;">
                     <section class="subscription__about">
-                      <h5>{{ subscription.daysRemaining === 0 ? '(Expired) ' : '' }}{{ subscription.subscriptionItem?.title }}</h5>
+                      <h5>{{ subscription.expired ? '(Expired) ' : '' }}{{ subscription.subscriptionItem?.title }}</h5>
                       <p>{{ subscription.subscriptionItem?.description }}</p>
                     </section>
 
