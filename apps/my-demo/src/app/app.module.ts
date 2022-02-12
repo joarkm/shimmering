@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { SubscriptionItemComponent } from './subscription-item/subscription-item.component';
+import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   ],
   declarations: [
     AppComponent,
-    NxWelcomeComponent
+    NxWelcomeComponent,
+    SubscriptionItemComponent,
+    SubscriptionListComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

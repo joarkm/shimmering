@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Message, MySubscription } from '@my/api-interfaces';
-import { Observable, share, shareReplay } from 'rxjs';
+import { Observable } from 'rxjs';
+
 import { AppService } from './app.service';
+
 
 @Component({
   selector: 'my-root',
@@ -15,16 +16,10 @@ export class AppComponent implements OnInit {
   public message$: Observable<Message> = this.appService.getMessage();
   public message!: Message;
   public subscriptions$: Observable<Observable<MySubscription>[]>;
-  public iconClass: { [key: string]: string } = {
-    'audio': 'fi fi-rs-music',
-    'student': 'fi fi-rr-graduation-cap',
-    'video': 'fi fi-rr-film',
-    'volleyball': 'fi fi-rr-volleyball'
-  }
 
   constructor(private appService: AppService) {
     this.isLoading$ = this.appService.isLoading$;
-    this.subscriptions$ = this.appService.getSubscriptions().pipe(shareReplay());
+    this.subscriptions$ = this.appService.getSubscriptions();
   }
 
   ngOnInit(): void {

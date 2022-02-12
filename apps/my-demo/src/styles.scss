@@ -18,3 +18,64 @@ body,html {
     color: white;
   }
 }
+
+.shimmer {
+  background-image: linear-gradient(
+    90deg,
+    #eee 0%,
+    #eee 40%,
+    #ddd 50%,
+    #ddd 55%,
+    #eee 65%,
+    #eee 100%
+  );
+  background-size: 400%;
+  animation: shimmer 1500ms infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shimmer {
+    background-image: linear-gradient(
+      90deg,
+      #666 0%,
+      #666 40%,
+      #777 50%,
+      #777 55%,
+      #666 65%,
+      #666 100%
+    );
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.rectangle {
+  height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #ddd;
+  @media (prefers-color-scheme: dark) {
+    background-color: #666;
+  }
+}
+.square {
+  border-radius: 6px;
+  height: 75px;
+  width: 75px;
+  background-color: #ddd;
+  @media (prefers-color-scheme: dark) {
+      background-color: #666;
+  }
+}
