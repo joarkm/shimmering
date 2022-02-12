@@ -1,0 +1,3 @@
+<ng-container *ngIf="(subscriptions$ | async) as subscriptions">
+  <my-subscription-list [subscriptions]="subscriptions" [isLoading]="!!(isLoading$ | async)"></my-subscription-list>
+</ng-container>

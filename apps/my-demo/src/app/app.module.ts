@@ -5,21 +5,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { SubscriptionItemComponent } from './subscription-item/subscription-item.component';
-import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
+import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    SubscriptionsModule
   ],
   declarations: [
     AppComponent,
-    NxWelcomeComponent,
-    SubscriptionItemComponent,
-    SubscriptionListComponent
+    NxWelcomeComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

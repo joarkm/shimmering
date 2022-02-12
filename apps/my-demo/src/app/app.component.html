@@ -3,37 +3,9 @@
   <span class="rectangle card" [ngClass]="{ 'shimmer': isLoading$ | async }">
     {{ (message$ | async) ? '' : '' }}
   </span>
-  <!-- <span class="rectangle" [ngClass]="{ 'shimmer': isLoading$ | async }">{{ message }}</span> -->
 
   <h4 *ngIf="isLoading$ | async" class="rectangle" [ngClass]="{ 'shimmer': isLoading$ | async }" style="height: 1em;"></h4>
 
-  <div *ngIf="isLoading$ | async" class="subscription">
-    <span class="square shimmer"></span>
-    <div style="display: grid; grid-auto-flow: row;">
-      <section class="subscription__about">
-        <h5 class="rectangle shimmer" style="height: 1em; flex-grow: 1;"></h5>
-        <p class="rectangle shimmer" style="height: 30px; flex-grow: 1;"></p>
-      </section>
-  
-      <span class="rectangle shimmer" style="height: 1em;  align-self: flex-end;"></span>
-    </div>
-  </div>
+  <my-subscriptions-container></my-subscriptions-container>
 
-  <ng-container *ngIf="(isLoading$ | async) === false && (subscriptions$ | async)">
-    <ng-container *ngIf="(subscriptions$ | async) as subscriptions">
-      <ng-container *ngIf="subscriptions.length > 0">
-        <div class="subscriptions">
-          <h4>{{ subscriptions.length }} subscriptions</h4>
-          <my-subscription-list [subscriptions]="subscriptions"></my-subscription-list>          
-          
-          <ng-container *ngFor="let subscription$ of subscriptions">
-            <ng-container *ngIf="(subscription$ | async) as subscription">
-              <!-- <my-subscription-item [subscription]="subscription"></my-subscription-item> -->
-            </ng-container>
-          </ng-container>
-        </div>
-      </ng-container>
-    </ng-container>
-  </ng-container>
-  
 </div>

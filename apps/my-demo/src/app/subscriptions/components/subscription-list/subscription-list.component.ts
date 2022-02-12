@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubscriptionListComponent implements OnInit {
-
+  @Input() isLoading!: boolean;
   @Input() subscriptions!: Observable<MySubscription>[];
 
   constructor() { }

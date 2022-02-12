@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MySubscription } from '@my/api-interfaces';
 
 @Component({
@@ -7,7 +7,7 @@ import { MySubscription } from '@my/api-interfaces';
   styleUrls: ['./subscription-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubscriptionItemComponent implements OnInit {
+export class SubscriptionItemComponent {
   @Input() subscription!: MySubscription;
 
   public iconClass: { [key: string]: string } = {
@@ -16,10 +16,5 @@ export class SubscriptionItemComponent implements OnInit {
     'video': 'fi fi-rr-film',
     'volleyball': 'fi fi-rr-volleyball'
   };
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

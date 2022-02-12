@@ -1,5 +1,0 @@
-<section class="subscriptions">
-    <ng-container *ngFor="let subscription$ of subscriptions">
-        <my-subscription-item *ngIf="(subscription$ | async) as subscription" [subscription]="subscription"></my-subscription-item>
-    </ng-container>
-</section>

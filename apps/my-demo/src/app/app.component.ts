@@ -15,11 +15,9 @@ export class AppComponent implements OnInit {
   public isLoading$: Observable<boolean>;
   public message$: Observable<Message> = this.appService.getMessage();
   public message!: Message;
-  public subscriptions$: Observable<Observable<MySubscription>[]>;
 
   constructor(private appService: AppService) {
     this.isLoading$ = this.appService.isLoading$;
-    this.subscriptions$ = this.appService.getSubscriptions();
   }
 
   ngOnInit(): void {
