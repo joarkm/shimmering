@@ -1,9 +1,6 @@
-
-
-<!-- <ng-container *ngIf="(subscriptions$ | async) as subscriptions">
-  <my-subscription-list [subscriptions]="subscriptions" [isLoaded]="!!(isLoaded$ | async)"></my-subscription-list>
-</ng-container> -->
 <my-subscription-list
   [subscriptions]="(subscriptions$ | async)!"
+  [activeSubscriptions]="(activeSubscriptions$ | async)!"
+  [expiredSubscriptions]="(expiredSubscriptions$ | async)!"
   [isLoaded]="(isLoaded$ | async)!">
 </my-subscription-list>

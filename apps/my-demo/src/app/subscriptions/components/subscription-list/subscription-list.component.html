@@ -1,7 +1,8 @@
 <section class="subscriptions">
     <ng-container *ngIf="isLoaded; else Loading">
         <h4>{{ subscriptions.length }} subscriptions</h4>
-        <my-subscription-item *ngFor="let subscription of subscriptions" [subscription]="subscription"></my-subscription-item>
+        <my-subscription-item *ngFor="let expiredSubscription of expiredSubscriptions" [subscription]="expiredSubscription"></my-subscription-item>
+        <my-subscription-item *ngFor="let activeSubscription of activeSubscriptions" [subscription]="activeSubscription"></my-subscription-item>
     </ng-container>
 
     <ng-template #Loading>

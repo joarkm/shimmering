@@ -10,5 +10,7 @@ import { MySubscription } from '@my/api-interfaces';
 export class SubscriptionListComponent {
   @Input() isLoaded!: boolean;
   @Input() subscriptions!: MySubscription[];
+  @Input() activeSubscriptions!: MySubscription[];
+  @Input() expiredSubscriptions!: MySubscription[];
 
 }

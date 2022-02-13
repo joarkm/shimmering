@@ -20,9 +20,13 @@ export function sortActiveFirst(s1: MySubscription, s2: MySubscription): number 
     return (s1.expired === s2.expired)? 0 : s1.expired? 1 : -1;
 }
 
+export function sortByDaysRemaining(s1: MySubscription, s2: MySubscription): number {
+    return s1.daysRemaining - s2.daysRemaining;
+}
+
 export const subscriptionsAdapter: EntityAdapter<MySubscription> = createEntityAdapter<MySubscription>({
     selectId: selectSubscriptionId,
-    sortComparer: sortActiveFirst
+    sortComparer: sortByTitle
 });
 
 export const initialSubscriptionsState: SubscriptionsState = subscriptionsAdapter.getInitialState({

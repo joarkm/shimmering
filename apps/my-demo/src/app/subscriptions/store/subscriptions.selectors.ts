@@ -15,3 +15,11 @@ const {
 export const selectAllSubscriptions = selectAll;
 export const selectSubscriptionsCount = selectTotal;
 export const selectIsSubscriptionsLoaded = createSelector(selectSubscriptionstate, state => state.isLoaded);
+export const selectActiveSubscriptions = createSelector(
+  selectAllSubscriptions,
+  subscriptions => subscriptions.filter(subscription => !subscription.expired)
+);
+export const selectExpiredSubscriptions = createSelector(
+  selectAllSubscriptions,
+  subscriptions => subscriptions.filter(subscription => subscription.expired)
+);
