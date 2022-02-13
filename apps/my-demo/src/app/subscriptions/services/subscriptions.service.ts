@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { MySubscription } from '@my/api-interfaces';
 import { combineLatest, delay, interval, map, merge, Observable, of, take } from 'rxjs';
 
+import { uuid } from '../../shared/utils';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionsService {
+export class Subscriptionservice {
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +24,7 @@ export class SubscriptionsService {
         daysRemaining: 0,
         expired: true,
         subscriptionItem: {
+          id: uuid(),
           title: 'Student membership',
           description: 'Student member ship fee',
           icon: 'student'
@@ -34,6 +37,7 @@ export class SubscriptionsService {
           daysRemaining: 5,
           expired: false,
           subscriptionItem: {
+            id: uuid(),
             title: 'Video streaming',
             description: 'Streaming service for video content',
             icon: 'video'
@@ -60,6 +64,7 @@ export class SubscriptionsService {
           daysRemaining: 10,
           expired: false,
           subscriptionItem: {
+            id: uuid(),
             title: 'Audio streaming',
             description: 'Streaming service for audio content',
             icon: 'audio'
@@ -67,7 +72,7 @@ export class SubscriptionsService {
         } as MySubscription),
         merge(
           of(-1),
-          interval(1000)
+          interval(1100)
         ).pipe(
           map(x => 9 - x),
           take(11)
@@ -85,6 +90,7 @@ export class SubscriptionsService {
         daysRemaining: 365,
         expired: false,
         subscriptionItem: {
+          id: uuid(),
           title: 'Club membership',
           description: 'Club member ship fee',
           icon: 'volleyball'
@@ -93,7 +99,7 @@ export class SubscriptionsService {
     ];
 
     return of(subscriptions).pipe(
-      delay(500)
+      delay(2000)
     );
   }
 }

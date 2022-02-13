@@ -9,6 +9,9 @@ import { MySubscription } from '@my/api-interfaces';
 })
 export class SubscriptionItemComponent {
   @Input() subscription!: MySubscription;
+  @Input() daysRemaining!: number;
+  @Input() daysTotal!: number;
+
 
   public iconClass: { [key: string]: string } = {
     'audio': 'fi fi-rs-music',

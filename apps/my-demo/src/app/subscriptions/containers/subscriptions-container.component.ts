@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MySubscription } from '@my/api-interfaces';
+import { select, Store } from '@ngrx/store';
 import { delay, merge, Observable, of } from 'rxjs';
-import { SubscriptionsService } from '../services';
+import { Subscriptionservice } from '../services';
+import { loadSubscriptions } from '../store/subscriptions.actions';
+import { selectAllSubscriptions, selectIsSubscriptionsLoaded } from '../store/subscriptions.selectors';
+import { SubscriptionsState } from '../store/subscriptions.state';
 
 @Component({
   selector: 'my-subscriptions-container',
@@ -11,18 +15,16 @@ import { SubscriptionsService } from '../services';
 })
 export class SubscriptionsContainerComponent implements OnInit {
 
-  public isLoading$: Observable<boolean>;
-  public subscriptions$: Observable<Observable<MySubscription>[]>;
+  public isLoaded$: Observable<boolean>;
+  public subscriptions$: Observable<MySubscription[]>;
 
-  constructor(private subscriptionsService: SubscriptionsService) {
-    this.isLoading$ = merge(
-      of(true),
-      of(false).pipe(delay(1500))
-    );
-    this.subscriptions$ = this.subscriptionsService.getSubscriptions();
+  constructor(private store: Store<SubscriptionsState>) {
+    this.isLoaded$ = this.store.pipe(select(selectIsSubscriptionsLoaded));
+    this.subscriptions$ = this.store.pipe(select(selectAllSubscriptions));
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadSubscriptions());
   }
 
 }
